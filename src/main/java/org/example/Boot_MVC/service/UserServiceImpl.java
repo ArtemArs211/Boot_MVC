@@ -1,11 +1,10 @@
 package org.example.Boot_MVC.service;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.example.Boot_MVC.dao.UserDao;
 import org.example.Boot_MVC.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
@@ -21,11 +20,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userDao.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserById(Long id) {
         return userDao.findById(id);
     }
